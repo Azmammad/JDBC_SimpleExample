@@ -3,62 +3,25 @@ package jdbc;
 import java.sql.*;
 
 public class CrudOperation {
-    public static void insertAuthor(){
+    public static void insertAuthor(String fullName){
         try(Connection conn = Util.getConnect();
             PreparedStatement stmt = conn.prepareStatement(IQuery.INSERT_AUTHOR)) {
-            stmt.setString(1,"Rovshan Abdullayev");
-            stmt.executeUpdate();
-            stmt.setString(1,"Elxan Elatli");
-            stmt.executeUpdate();
-            stmt.setString(1,"Orhan Pamuk");
+            stmt.setString(1,fullName);
             stmt.executeUpdate();
 
             System.out.println("rows affected");
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void insertBook(){
+    public static void insertBook(String title,int year,int author_id){
         try(Connection conn = Util.getConnect();
             PreparedStatement stmt = conn.prepareStatement(IQuery.INSERT_BOOK)) {
-            stmt.setString(1,"Manzaradan Parçalar");
-            stmt.setInt(2,2016);
-            stmt.setInt(3,3);
+            stmt.setString(1,title);
+            stmt.setInt(2,year);
+            stmt.setInt(3,author_id);
             stmt.executeUpdate();
-
-            stmt.setString(1,"Relslər Üzərinə Uzanmış Adam");
-            stmt.setInt(2,2012);
-            stmt.setInt(3,1);
-            stmt.executeUpdate();
-
-            stmt.setString(1,"Görünməyən İzlər");
-            stmt.setInt(2,2014);
-            stmt.setInt(3,2);
-            stmt.executeUpdate();
-
-
-            stmt.setString(1,"O Gecə");
-            stmt.setInt(2,2016);
-            stmt.setInt(3,2);
-            stmt.executeUpdate();
-
-            stmt.setString(1,"Bu Şəhərdə Kimsə Yoxdur");
-            stmt.setInt(2,2010);
-            stmt.setInt(3,1);
-            stmt.executeUpdate();
-
-            stmt.setString(1,"The White Castle");
-            stmt.setInt(2,2013);
-            stmt.setInt(3,3);
-            stmt.executeUpdate();
-
-            stmt.setString(1,"Kar");
-            stmt.setInt(2,2020);
-            stmt.setInt(3,3);
-            stmt.executeUpdate();
-
             System.out.println("rows affected");
 
         } catch (SQLException e) {
