@@ -4,11 +4,11 @@ import java.sql.*;
 
 public class CrudOperation {
     public static void insertAuthor(String fullName){
+public static void insertAuthor(String fullName){
         try(Connection conn = Util.getConnect();
             PreparedStatement stmt = conn.prepareStatement(IQuery.INSERT_AUTHOR)) {
             stmt.setString(1,fullName);
             stmt.executeUpdate();
-
             System.out.println("rows affected");
         } catch (SQLException e) {
             throw new RuntimeException(e);
